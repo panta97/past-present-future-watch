@@ -21,6 +21,8 @@ const watch = {
 
   // showing angle
   showingAngle: Math.PI / 7.5,
+  // milliseconds in a day
+  millInADay: 8.64e7,
 };
 
 export default watch;

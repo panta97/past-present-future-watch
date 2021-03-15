@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import watch from "../constants";
 import { PositionProps, calculateProps as Calc } from "../utils";
 import { TimeLine } from "./TimeLine";
@@ -10,9 +10,7 @@ export enum TitleType {
   FUTURE,
 }
 
-interface TitlesProps {}
-
-export const Titles = ({}) => {
+export const Titles = memo(() => {
   const calculateProps = (
     type: TitleType,
     element: HTMLSpanElement | null
@@ -73,4 +71,4 @@ export const Titles = ({}) => {
       <TimeLine />
     </div>
   );
-};
+});
