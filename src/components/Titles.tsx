@@ -45,6 +45,8 @@ export const Titles = memo(() => {
         height: watch.size,
         position: "absolute",
         textTransform: "uppercase",
+        letterSpacing: "0.2em",
+        fontWeight: 500,
       }}
     >
       <TimeTitle

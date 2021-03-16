@@ -12,6 +12,7 @@ export const Hours = ({ currTime }: HoursProps) => {
     <div
       style={{
         fontSize: watch.hourFontsize,
+        color: `${watch.minHourColor}`,
         width: `${watch.size}px`,
         height: `${watch.size}px`,
         position: "absolute",
