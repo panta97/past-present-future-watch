@@ -25,7 +25,7 @@ export const Watch = ({}: WatchProps) => {
         setTimeout(() => {
           setCurrTime(new Date().getTime() - star);
           requestAnimationFrame(tick);
-        }, 1000 / 60);
+        }, 1000 / 1);
       };
       tick();
     }, 1000);

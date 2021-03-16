@@ -18,7 +18,7 @@ export const Minutes = ({ currTime }: MinutesProps) => {
         top: "0px",
         left: "0px",
         transform: `rotate(${
-          (360 - 360 * (currTime / (watch.millInADay / 720))) % 360
+          (360 - 360 * (currTime / (watch.millInADay / 12))) % 360
         }deg)`,
       }}
     >
