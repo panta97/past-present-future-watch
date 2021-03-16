@@ -20,14 +20,16 @@ export const Watch = ({}: WatchProps) => {
   ).getTime();
   const [currTime, setCurrTime] = useState<number>(0);
   useEffect(() => {
-    const tick = () => {
-      setTimeout(() => {
-        setCurrTime(new Date().getTime() - star);
-        requestAnimationFrame(tick);
-      }, 1000 / 1);
-    };
-    tick();
-  }, []);
+    setTimeout(() => {
+      const tick = () => {
+        setTimeout(() => {
+          setCurrTime(new Date().getTime() - star);
+          requestAnimationFrame(tick);
+        }, 1000 / 60);
+      };
+      tick();
+    }, 1000);
+  }, [star]);
 
   return (
     <div
