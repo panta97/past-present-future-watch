@@ -7,7 +7,7 @@ interface TimeLineProps {}
 export const TimeLine = ({}) => {
   const spanRef = useRef(null);
   // force re-rendering
-  const [, setIsAligned] = useState<boolean>(false);
+  const [isAligned, setIsAligned] = useState<boolean>(false);
 
   const calculateProps = (element: HTMLSpanElement | null) => {
     if (!element) return;
@@ -27,7 +27,7 @@ export const TimeLine = ({}) => {
         position: "absolute",
         height: "2px",
         width: `${watch.size * 0.6}px`,
-        backgroundColor: `${watch.accentColor}`,
+        backgroundColor: `${isAligned ? watch.accentColor : "rgba(0,0,0,0)"}`,
         ...calculateProps(spanRef.current),
       }}
     ></span>

@@ -20,7 +20,7 @@ export const TimeTitle = ({
 }: TimeTitleProps) => {
   const spanRef = useRef(null);
   // force re-rendering
-  const [, setIsAligned] = useState<boolean>(false);
+  const [isAligned, setIsAligned] = useState<boolean>(false);
 
   useEffect(() => {
     setTimeout(() => {
@@ -33,7 +33,7 @@ export const TimeTitle = ({
       ref={spanRef}
       style={{
         position: "absolute",
-        color: color,
+        color: `${isAligned ? color : "rgba(0,0,0,0)"}`,
         ...calculateProps(type, spanRef.current),
       }}
     >

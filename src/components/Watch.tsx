@@ -10,7 +10,7 @@ interface WatchProps {}
 export const Watch = ({}: WatchProps) => {
   const today = new Date();
   // milliseconds at star of the day
-  let star = new Date(
+  let start = new Date(
     today.getFullYear(),
     today.getMonth(),
     today.getDate(),
@@ -19,15 +19,47 @@ export const Watch = ({}: WatchProps) => {
     0
   ).getTime();
   const [currTime, setCurrTime] = useState<number>(0);
+  // state is set to true to show transition at the start
+  const [showTransition, setShowTransition] = useState<boolean>(true);
   useEffect(() => {
     const tick = () => {
       setTimeout(() => {
-        setCurrTime(new Date().getTime() - star);
+        setCurrTime(new Date().getTime() - start);
         requestAnimationFrame(tick);
       }, 1000 / 1);
     };
     tick();
-  }, [star]);
+  }, [start]);
+
+  const handleVisibilityChange = () => {
+    if (document.visibilityState === "visible") {
+      setShowTransition(true);
+    } else {
+      setShowTransition(false);
+    }
+  };
+
+  const removeTransitionDelayed = () => {
+    setTimeout(() => {
+      setShowTransition(false);
+    }, 2000);
+  };
+
+  // after first rendering remove transition property
+  // to avoid bad animation transition
+  useEffect(() => {
+    if (showTransition) removeTransitionDelayed();
+  }, [showTransition]);
+
+  useEffect(() => {
+    // remove transition of first rendering same as above useEffect
+    removeTransitionDelayed();
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, []);
 
   return (
     <div
@@ -40,8 +72,8 @@ export const Watch = ({}: WatchProps) => {
         position: "relative",
       }}
     >
-      <Hours currTime={currTime} />
-      <Minutes currTime={currTime} />
+      <Hours currTime={currTime} showTransition={showTransition} />
+      <Minutes currTime={currTime} showTransition={showTransition} />
       <Cover />
       <Titles />
     </div>

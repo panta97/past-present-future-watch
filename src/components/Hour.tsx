@@ -10,7 +10,7 @@ interface HourProps {
 export const Hour = memo(({ hour, index }: HourProps) => {
   const spanRef = useRef(null);
   // force re-rendering
-  const [, setIsAligned] = useState<boolean>(false);
+  const [isAligned, setIsAligned] = useState<boolean>(false);
 
   useEffect(() => {
     setTimeout(() => {
@@ -45,6 +45,7 @@ export const Hour = memo(({ hour, index }: HourProps) => {
     <span
       ref={spanRef}
       style={{
+        color: `${isAligned ? "" : "rgba(0,0,0,0)"}`,
         position: "absolute",
         fontWeight: 500,
         ...calculateProps(index, spanRef.current),

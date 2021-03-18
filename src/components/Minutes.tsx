@@ -3,11 +3,12 @@ import { Minute } from "./Minute";
 
 interface MinutesProps {
   currTime: number;
+  showTransition: boolean;
 }
 
 const minutes = new Array(24).fill(null).map((_, i) => (i * 5 + 5) % 60);
 
-export const Minutes = ({ currTime }: MinutesProps) => {
+export const Minutes = ({ currTime, showTransition }: MinutesProps) => {
   return (
     <div
       style={{
@@ -22,6 +23,7 @@ export const Minutes = ({ currTime }: MinutesProps) => {
         transform: `rotate(${
           (360 - 360 * (currTime / (watch.millInADay / 12))) % 360
         }deg)`,
+        transition: `${showTransition ? "transform 500ms" : ""}`,
       }}
     >
       {minutes.map((m, index) => {
