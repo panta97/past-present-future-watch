@@ -1,5 +1,6 @@
 {
   "name": "past-present-future-watch",
+  "homepage": "https://panta97.github.io/past-present-future-watch",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -17,6 +18,7 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
+    "deploy": "gh-pages -d build",
     "dev": "react-scripts start",
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -40,5 +42,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^3.1.0"
   }
 }
